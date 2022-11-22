@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- code -->
+        <record id="document_tree_inherit" model="ir.ui.view">
+            <field name="name">document_tree_inherit</field>
+            <field name="inherit_id" ref="documents.documents_view_list"/>
+            <field name="model">documents.document</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="contract_id" />
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="document_kanban_inherit" model="ir.ui.view">
+            <field name="name">document_kanban_inherit</field>
+            <field name="inherit_id" ref="documents.document_view_kanban"/>
+            <field name="model">documents.document</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="contract_id" />
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
