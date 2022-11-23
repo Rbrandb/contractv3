@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from datetime import datetime
-
+from odoo import http, tools
 from dateutil.relativedelta import relativedelta
 
 from odoo import models, fields, api, _
@@ -309,14 +309,20 @@ class PartnerContract(models.Model):
 
     def action_print(self):
         """Print Contract function"""
+
         partner = {'name': self.partner_id.name,
                    'address': self.partner_id.street}
         product = []
+        currency = self.env.company.currency_id.symbol
         for line in self.line_ids:
+            descr = tools.html2plaintext(line.product_id.description)
             pro = {
                 'product_name' : line.product_id.name,
-                'description' : line.product_id.description,
-                # 'hs_code': line.product_id.l10n_in_hsn_code
+                'description' : descr,
+                'quantity': line.quantity,
+                'price': line.price_unit,
+                'hs_code': line.product_id.l10n_in_hsn_code,
+
             }
             product.append(pro)
         if self.period_f_delivery_end:
@@ -324,10 +330,9 @@ class PartnerContract(models.Model):
                 'form': self.read()[0],
                 'partner': partner,
                 'type': self.type,
-                'currency_id': self.currency_id.symbol,
+                'currency_id': currency,
                 'product': product,
                 'date': self.date_start.strftime("%d,%A,%B,%Y"),
-                'qty': sum(self.line_ids.mapped('quantity')),
                 'period_start': self.period_f_delivery.strftime("%B,%Y"),
                 'period_end': self.period_f_delivery_end.strftime("%B,%Y")
             }
@@ -336,10 +341,9 @@ class PartnerContract(models.Model):
                 'form': self.read()[0],
                 'partner': partner,
                 'type': self.type,
-                'currency_id': self.currency_id.symbol,
+                'currency_id': currency,
                 'product': product,
                 'date': self.date_start.strftime("%d,%A,%B,%Y"),
-                'qty': sum(self.line_ids.mapped('quantity')),
                 'period_start': self.period_f_delivery.strftime("%B,%Y"),
             }
         return self.env.ref('xf_partner_contract.action_print_contract').report_action(self, data=rec)

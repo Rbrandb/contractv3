@@ -85,328 +85,618 @@
             </div>
         </template>
 
+        <template id="first_product">
+            <div class="text-left">
+                <h2>
+                    <t t-if="type =='sale'">
+                        Sale Order
+                    </t>
+                    <t t-else="">
+                        Purchase order
+                    </t>
+                </h2>
+            </div>
+
+            <div class="text-left">
+
+                <t t-if="form['date_start']">
+                    <div>
+                        <label style="width:195px;">
+                            Start Date
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="date"/>
+                    </div>
+                </t>
+                <t t-if="form['name']">
+                    <div>
+                        <label style="width:195px;">
+                            <t t-if="type =='sale'">
+                                S.O. number
+                            </t>
+                            <t t-else="">
+                                P.O. number
+                            </t>
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['name']"/>
+                    </div>
+                </t>
+                <span style="font-weight: bold;">
+                    Specification
+                </span>
+                <div>
+                    <label>
+                        product
+                    </label>
+                    <span style="padding-left:137px;">
+                        :&amp;nbsp;
+                        <t t-esc="result['product_name']"/>
+                    </span>
+                    <div style="padding-left:205px;">
+                        <t t-esc="result['description']"/>
+                    </div>
+                    <div style="padding-left:205px;">
+                            HS code:
+                            &amp;nbsp;
+                            <t t-esc="result['hs_code']"/>
+                    </div>
+                </div>
+                <t t-if="form['ffa']">
+                    <div>
+                        <label style="width:193px;">
+                            FFA
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['ffa']"/>
+                        </label>
+                        <t t-esc="form['ffa_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['m_and_i']">
+                    <div>
+                        <label style="width:193px;">
+                            M&amp;I
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['m_and_i']"/>
+                        </label>
+                        <t t-esc="form['m_and_i_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['iv']">
+                    <div>
+                        <label style="width:193px;">
+                            IV
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['iv']"/>
+                        </label>
+                        <t t-esc="form['iv_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['sulphur']">
+                    <div>
+                        <label style="width:193px;">
+                            Sulphur
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['sulphur']"/>
+                        </label>
+                        <t t-esc="form['sulphur_iv_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['appearance']">
+                    <div>
+                        <label style="width:193px;">
+                            Appearance
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['appearance']"/>
+                    </div>
+                </t>
+                <div>
+                    <label style="width:193px;">
+                        Prohibited materials
+                    </label>
+                    :&amp;nbsp;
+                    Distillation's residues, acids oil, detergents, waxes, mineral oil,
+                    esters, industrial chemicals, animal fat or
+                    <span style="padding-left:200px;">
+                        any material of unknown origin (which in itself is unsuitable to produce
+                        biofuel)
+                    </span>
+                </div>
+                <span style="font-weight: bold; padding-top:30px;">
+                    Commercial terms
+                </span>
+                <!--                                    <t t-if="form['amount']">-->
+                <div>
+                    <label style="width:193px;">
+                        Price per MT
+                    </label>
+                    :&amp;nbsp;
+                    <t t-esc="result['price']"/>
+                    &amp;nbsp;
+                    <t t-esc="form['currency_id'][1]"/>
+                </div>
+                <div>
+                    <label style="width:193px;">
+                        Quantity
+                    </label>
+                    :&amp;nbsp;
+                    <t t-esc="result['quantity']"/>
+                </div>
+                <t t-if="form['packaging']">
+                    <div>
+                        <label style="width:193px;">
+                            Packaging
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['packaging']"/>
+                    </div>
+                </t>
+                <t t-if="form['expected_containers']">
+                    <div>
+                        <label style="width:193px;">
+                            Expected amount of containers
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['expected_containers']"/>
+                    </div>
+                </t>
+                <t t-if="form['notes']">
+                    <div>
+                        <label style="width:193px;">
+                            Delivery terms
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['notes']"/>
+                    </div>
+                </t>
+                <t t-if="form['period_f_delivery']">
+                    <div>
+                        <label style="width:193px;">
+                            Period of shipment and delivery
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="period_start"/>
+                        &amp;nbsp; to &amp;nbsp;
+                        <t t-esc="period_end"/>
+                    </div>
+                </t>
+                <t t-if="form['payment_term_id']">
+                    <div>
+                        <label style="width:193px;">
+                            Payment terms
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['payment_term_id'][1]"/>
+                    </div>
+                </t>
+                <t t-if="form['trading_rule']">
+                    <div>
+                        <label style="width:193px;">
+                            Applied trading rules
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['trading_rule']"/>
+                    </div>
+                </t>
+                <t t-if="form['legislation']">
+                    <div>
+                        <label style="width:193px;">
+                            Legislation
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['legislation']"/>
+                    </div>
+                </t>
+                <div style="padding-top:10px;">
+                    In deviation from the NOFOTA trading rules, when the buyer can show irrevocable
+                    proof of
+                    payment and the payment is not
+                    received by seller due to international OFAC investigation of the seller, this
+                    purchase
+                    order is still lawfully binding.
+                </div>
+                <span style="font-weight: bold;">
+                    Discount clause
+                </span>
+                <div>
+                    In the even the agreed upon values are exceeded a discount is applicable
+                    according to
+                    below numbers and percentages.
+                </div>
+                <t t-if="form['ffa']">
+                    <div>
+                        <label style="width:193px;">
+                            FFA
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['ffa_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['ffa']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['ffa']"/>
+                            </t>
+                        </label>
+                        1% discount per 1 % off spec
+                    </div>
+                </t>
+                <t t-if="form['m_and_i']">
+                    <div>
+                        <label style="width:193px;">
+                            M&amp;I
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['m_and_i_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['m_and_i']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['m_and_i']"/>
+                            </t>
+                        </label>
+                        1% discount per 1 % off spec
+                    </div>
+                </t>
+                <t t-if="form['iv']">
+                    <div>
+                        <label style="width:193px;">
+                            Iodine Value
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['iv_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['iv']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['iv']"/>
+                            </t>
+                        </label>
+                        1 USD discount per point off spec
+                    </div>
+                </t>
+                <t t-if="form['sulphur']">
+                    <div>
+                        <label style="width:193px;">
+                            Sulphur
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['sulphur_iv_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['sulphur']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['sulphur']"/>
+                            </t>
+                        </label>
+                        1 USD discount per point off spec
+                    </div>
+                </t>
+            </div>
+        </template>
+
+
+        <template id="no_product_line">
+            <div class="text-left">
+                <h2>
+                    <t t-if="type =='sale'">
+                        Sale Order
+                    </t>
+                    <t t-else="">
+                        Purchase order
+                    </t>
+                </h2>
+            </div>
+            <div class="text-left">
+                <t t-if="form['date_start']">
+                    <div>
+                        <label style="width:195px;">
+                            Start Date
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="date"/>
+                    </div>
+                </t>
+                <t t-if="form['name']">
+                    <div>
+                        <label style="width:195px;">
+                            <t t-if="type =='sale'">
+                                S.O. number
+                            </t>
+                            <t t-else="">
+                                P.O. number
+                            </t>
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['name']"/>
+                    </div>
+                </t>
+                <span style="font-weight: bold;">
+                    Specification
+                </span>
+                <t t-if="form['ffa']">
+                    <div>
+                        <label style="width:193px;">
+                            FFA
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['ffa']"/>
+                        </label>
+                        <t t-esc="form['ffa_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['m_and_i']">
+                    <div>
+                        <label style="width:193px;">
+                            M&amp;I
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['m_and_i']"/>
+                        </label>
+                        <t t-esc="form['m_and_i_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['iv']">
+                    <div>
+                        <label style="width:193px;">
+                            IV
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['iv']"/>
+                        </label>
+                        <t t-esc="form['iv_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['sulphur']">
+                    <div>
+                        <label style="width:193px;">
+                            Sulphur
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:150px;">
+                            &amp;nbsp;
+                            <t t-esc="form['sulphur']"/>
+                        </label>
+                        <t t-esc="form['sulphur_iv_min_max']"/>
+                    </div>
+                </t>
+                <t t-if="form['appearance']">
+                    <div>
+                        <label style="width:193px;">
+                            Appearance
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['appearance']"/>
+                    </div>
+                </t>
+                <div>
+                    <label style="width:193px;">
+                        Prohibited materials
+                    </label>
+                    :&amp;nbsp;
+                    Distillation's residues, acids oil, detergents, waxes, mineral oil,
+                    esters, industrial chemicals, animal fat or
+                    <span style="padding-left:200px;">
+                        any material of unknown origin (which in itself is unsuitable to produce
+                        biofuel)
+                    </span>
+                </div>
+                <span style="font-weight: bold; padding-top:30px;">
+                    Commercial terms
+                </span>
+                <t t-if="form['packaging']">
+                    <div>
+                        <label style="width:193px;">
+                            Packaging
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['packaging']"/>
+                    </div>
+                </t>
+                <t t-if="form['expected_containers']">
+                    <div>
+                        <label style="width:193px;">
+                            Expected amount of containers
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['expected_containers']"/>
+                    </div>
+                </t>
+                <t t-if="form['notes']">
+                    <div>
+                        <label style="width:193px;">
+                            Delivery terms
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['notes']"/>
+                    </div>
+                </t>
+                <t t-if="form['period_f_delivery']">
+                    <div>
+                        <label style="width:193px;">
+                            Period of shipment and delivery
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="period_start"/>
+                        &amp;nbsp; to &amp;nbsp;
+                        <t t-esc="period_end"/>
+
+                    </div>
+                </t>
+                <t t-if="form['payment_term_id']">
+                    <div>
+                        <label style="width:193px;">
+                            Payment terms
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['payment_term_id'][1]"/>
+                    </div>
+                </t>
+                <t t-if="form['trading_rule']">
+                    <div>
+                        <label style="width:193px;">
+                            Applied trading rules
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['trading_rule']"/>
+                    </div>
+                </t>
+                <t t-if="form['legislation']">
+                    <div>
+                        <label style="width:193px;">
+                            Legislation
+                        </label>
+                        :&amp;nbsp;
+                        <t t-esc="form['legislation']"/>
+                    </div>
+                </t>
+                <div style="padding-top:30px;">
+                    In deviation from the NOFOTA trading rules, when the buyer can show irrevocable
+                    proof of
+                    payment and the payment is not
+                    received by seller due to international OFAC investigation of the seller, this
+                    purchase
+                    order is still lawfully binding.
+                </div>
+                <span style="font-weight: bold;">
+                    Discount clause
+                </span>
+                <div>
+                    In the even the agreed upon values are exceeded a discount is applicable
+                    according to
+                    below numbers and percentages.
+                </div>
+                <t t-if="form['ffa']">
+                    <div>
+                        <label style="width:193px;">
+                            FFA
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['ffa_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['ffa']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['ffa']"/>
+                            </t>
+                        </label>
+                        1% discount per 1 % off spec
+                    </div>
+                </t>
+                <t t-if="form['m_and_i']">
+                    <div>
+                        <label style="width:193px;">
+                            M&amp;I
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['m_and_i_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['m_and_i']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['m_and_i']"/>
+                            </t>
+                        </label>
+                        1% discount per 1 % off spec
+                    </div>
+                </t>
+                <t t-if="form['iv']">
+                    <div>
+                        <label style="width:193px;">
+                            Iodine Value
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['iv_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['iv']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['iv']"/>
+                            </t>
+                        </label>
+                        1 USD discount per point off spec
+                    </div>
+                </t>
+                <t t-if="form['sulphur']">
+                    <div>
+                        <label style="width:193px;">
+                            Sulphur
+                        </label>
+                        :&amp;nbsp;
+                        <label style="width:193px;">
+                            <t t-if="form['sulphur_iv_min_max']=='min'">
+                                Below&amp;nbsp;
+                                <t t-esc="form['sulphur']"/>
+                            </t>
+                            <t t-else="">
+                                Above&amp;nbsp;
+                                <t t-esc="form['sulphur']"/>
+                            </t>
+                        </label>
+                        1 USD discount per point off spec
+                    </div>
+                </t>
+            </div>
+        </template>
+
         <template id="contract_report_template">
             <t t-call="web.html_container">
                 <t t-call="xf_partner_contract.custom_contract_layout">
                     <div class="page" style="background-image:url('/xf_partner_contract/static/description/back.jpg');
-                        background-size:250mm 280mm; width:250mm; height:255mm; padding-top:5mm;">
-                        <div class="text-left">
-                            <h2>
-                                <t t-if="type =='sale'">
-                                    Sale Order
+                        background-size:250mm 280mm; width:250mm; height:255mm; padding-top:0mm;">
+                        <t t-if="product">
+                            <t t-set="j" t-value="1"/>
+                            <t t-foreach="product" t-as="result">
+                                <t t-if="j==1">
+                                    <t t-call="xf_partner_contract.first_product"/>
                                 </t>
-                                <t t-else="">
-                                    Purchase order
+                                <t t-if="j>1">
+                                    <div class="page" style="background-image:url('/xf_partner_contract/static/description/back.jpg');
+                                    background-size:250mm 280mm; width:250mm; height:255mm; padding-top:5mm;">
+                                        <t t-call="xf_partner_contract.first_product"/>
+                                    </div>
                                 </t>
-                            </h2>
-                        </div>
-                        <div class="text-left">
-
-                            <t t-if="form['date_start']">
-                                <div>
-                                    <label style="width:195px;">
-                                        Start Date
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="date"/>
-                                </div>
+                                <t t-set="j" t-value="j + 1"/>
                             </t>
-                            <t t-if="form['name']">
-                                <div>
-                                    <label style="width:195px;">
-                                        <t t-if="type =='sale'">
-                                            S.O. number
-                                        </t>
-                                        <t t-else="">
-                                            P.O. number
-                                        </t>
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['name']"/>
-                                </div>
-                            </t>
-                            <span style="font-weight: bold;">
-                                Specification
-                            </span>
-                            <t t-if="product">
-                                <div>
-                                    <label>
-                                        product
-                                    </label>
-                                    <!--                                    :&amp;nbsp;-->
-                                    <t t-set="i" t-value="1"/>
-                                    <t t-foreach="product" t-as="result">
-                                        <t t-if="i==1">
-                                            <span style="padding-left:137px;">
-                                                :&amp;nbsp;
-                                                <t t-esc="result['product_name']"/>
-                                            </span>
-                                        </t>
-                                        <t t-else="">
-                                            <div style="padding-left:196px;">
-                                                :&amp;nbsp;
-                                                <t t-esc="result['product_name']"/>
-                                            </div>
-                                        </t>
-                                        <t t-set="i" t-value="i + 1"/>
-                                    </t>
-                                </div>
-                            </t>
-                            <t t-if="form['ffa']">
-                                <div>
-                                    <label style="width:193px;">
-                                        FFA
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['ffa']"/>
-                                    <span style="padding-left:15mm;">
-                                        <t t-esc="form['ffa_min_max']"/>
-                                    </span>
-
-                                </div>
-                            </t>
-                            <t t-if="form['m_and_i']">
-                                <div>
-                                    <label style="width:193px;">
-                                        M&amp;I
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['m_and_i']"/>
-                                    <span style="padding-left:15mm;">
-                                        <t t-esc="form['m_and_i_min_max']"/>
-                                    </span>
-
-                                </div>
-                            </t>
-                            <t t-if="form['iv']">
-                                <div>
-                                    <label style="width:193px;">
-                                        IV
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['iv']"/>
-                                    <span style="padding-left:15mm;">
-                                        <t t-esc="form['iv_min_max']"/>
-                                    </span>
-
-                                </div>
-                            </t>
-                            <t t-if="form['sulphur']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Sulphur
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['sulphur']"/>
-                                    <span style="padding-left:15mm;">
-                                        <t t-esc="form['sulphur_iv_min_max']"/>
-                                    </span>
-
-                                </div>
-                            </t>
-                            <t t-if="form['appearance']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Appearance
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['appearance']"/>
-                                </div>
-                            </t>
-                            <div>
-                                <label style="width:193px;">
-                                    Prohibited materials
-                                </label>
-                                :&amp;nbsp;
-                                Distillation's residues, acids oil, detergents, waxes, mineral oil,
-                                esters, industrial chemicals, animal fat or
-                                <span style="padding-left:200px;">
-                                    any material of unknown origin (which in itself is unsuitable to produce biofuel)
-                                </span>
-                            </div>
-                            <span style="font-weight: bold; padding-top:30px;">
-                                Commercial terms
-                            </span>
-                            <t t-if="form['amount']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Price per MT
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['amount']"/>
-                                    &amp;nbsp;
-                                    <t t-esc="form['currency_id'][1]"/>
-
-                                </div>
-                            </t>
-                            <t t-if="qty">
-                                <div>
-                                    <label style="width:193px;">
-                                        Quantity
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="qty"/>
-                                </div>
-                            </t>
-                            <t t-if="form['packaging']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Packaging
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['packaging']"/>
-                                </div>
-                            </t>
-                            <t t-if="form['expected_containers']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Expected amount of containers
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['expected_containers']"/>
-                                </div>
-                            </t>
-                            <t t-if="form['notes']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Delivery terms
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['notes']"/>
-                                </div>
-                            </t>
-                            <t t-if="form['period_f_delivery']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Period of shipment and delivery
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="period_start"/>
-                                    &amp;nbsp; to &amp;nbsp;
-                                    <t t-esc="period_end"/>
-
-                                </div>
-                            </t>
-                            <t t-if="form['payment_term_id']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Payment terms
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['payment_term_id'][1]"/>
-                                </div>
-                            </t>
-                            <t t-if="form['trading_rule']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Applied trading rules
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['trading_rule']"/>
-                                </div>
-                            </t>
-                            <t t-if="form['legislation']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Legislation
-                                    </label>
-                                    :&amp;nbsp;
-                                    <t t-esc="form['legislation']"/>
-                                </div>
-                            </t>
-                            <div style="padding-top:30px;">
-                                In deviation from the NOFOTA trading rules, when the buyer can show irrevocable proof of
-                                payment and the payment is not
-                                received by seller due to international OFAC investigation of the seller, this purchase
-                                order is still lawfully binding.
-                            </div>
-                            <span style="font-weight: bold;">
-                                Discount clause
-                            </span>
-                            <div>
-                                In the even the agreed upon values are exceeded a discount is applicable according to
-                                below numbers and percentages.
-                            </div>
-                            <t t-if="form['ffa']">
-                                <div>
-                                    <label style="width:193px;">
-                                        FFA
-                                    </label>
-                                    :&amp;nbsp;
-                                    <label style="width:193px;">
-                                        <t t-if="form['ffa_min_max']=='min'">
-                                            Below&amp;nbsp;
-                                            <t t-esc="form['ffa']"/>
-                                        </t>
-                                        <t t-else="">
-                                            Above&amp;nbsp;
-                                            <t t-esc="form['ffa']"/>
-                                        </t>
-                                    </label>
-                                    1% discount per 1 % off spec
-                                </div>
-                            </t>
-                            <t t-if="form['m_and_i']">
-                                <div>
-                                    <label style="width:193px;">
-                                        M&amp;I
-                                    </label>
-                                    :&amp;nbsp;
-                                    <label style="width:193px;">
-                                        <t t-if="form['m_and_i_min_max']=='min'">
-                                            Below&amp;nbsp;
-                                            <t t-esc="form['m_and_i']"/>
-                                        </t>
-                                        <t t-else="">
-                                            Above&amp;nbsp;
-                                            <t t-esc="form['m_and_i']"/>
-                                        </t>
-                                    </label>
-                                    1% discount per 1 % off spec
-                                </div>
-                            </t>
-                            <t t-if="form['iv']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Iodine Value
-                                    </label>
-                                    :&amp;nbsp;
-                                    <label style="width:193px;">
-                                        <t t-if="form['iv_min_max']=='min'">
-                                            Below&amp;nbsp;
-                                            <t t-esc="form['iv']"/>
-                                        </t>
-                                        <t t-else="">
-                                            Above&amp;nbsp;
-                                            <t t-esc="form['iv']"/>
-                                        </t>
-                                    </label>
-                                    1 USD discount per point off spec
-                                </div>
-                            </t>
-                            <t t-if="form['sulphur']">
-                                <div>
-                                    <label style="width:193px;">
-                                        Sulphur
-                                    </label>
-                                    :&amp;nbsp;
-                                    <label style="width:193px;">
-                                        <t t-if="form['sulphur_iv_min_max']=='min'">
-                                            Below&amp;nbsp;
-                                            <t t-esc="form['sulphur']"/>
-                                        </t>
-                                        <t t-else="">
-                                            Above&amp;nbsp;
-                                            <t t-esc="form['sulphur']"/>
-                                        </t>
-                                    </label>
-                                    1 USD discount per point off spec
-                                </div>
-                            </t>
-                        </div>
+                        </t>
+                        <t t-else="">
+                            <t t-call="xf_partner_contract.no_product_line"/>
+                        </t>
                         <div class="row" style="page-break-before:always;
                                         background-image:url('/xf_partner_contract/static/description/back.jpg');
-                                        background-size:250mm 280mm; width:250mm; height:255mm; padding-top:30mm;">
+                                        background-size:250mm 280mm; width:250mm; height:255mm; padding-top:0mm;">
                             <div class="text-left" style="padding-left:30px;">
                                 <div style="font-weight: bold; font-size: 26px;">
                                     Documents to be provided by seller
