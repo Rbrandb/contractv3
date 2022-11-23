@@ -312,43 +312,36 @@ class PartnerContract(models.Model):
         partner = {'name': self.partner_id.name,
                    'address': self.partner_id.street}
         product = []
-        pro = []
-        specification = []
-        a = self.period_f_delivery
-        print(a.strftime("%c"))
-        print(a.strftime("%d,%A,%B,%Y"))
-        print(a.strftime("%B,%Y"))
-
         for line in self.line_ids:
-            p = {
+            pro = {
                 'product_name' : line.product_id.name,
                 'description' : line.product_id.description,
                 # 'hs_code': line.product_id.l10n_in_hsn_code
             }
-            pro.append(p)
-            lines = {
-                'product_id': line.product_id.name,
-                'label': line.name,
-                'Quantity': line.quantity,
-                'Price': line.price_unit,
-                'specification': line.specification_id.name
+            product.append(pro)
+        if self.period_f_delivery_end:
+            rec = {
+                'form': self.read()[0],
+                'partner': partner,
+                'type': self.type,
+                'currency_id': self.currency_id.symbol,
+                'product': product,
+                'date': self.date_start.strftime("%d,%A,%B,%Y"),
+                'qty': sum(self.line_ids.mapped('quantity')),
+                'period_start': self.period_f_delivery.strftime("%B,%Y"),
+                'period_end': self.period_f_delivery_end.strftime("%B,%Y")
             }
-            product.append(lines)
-        rec = {
-            'form': self.read()[0],
-            'partner': partner,
-            'line': product,
-            'type': self.type,
-            'currency_id': self.currency_id.symbol,
-            'unit': self.unit_id.name,
-            'end_unit': self.end_units,
-            'p': pro,
-            'spec': specification,
-            'date': self.date_start.strftime("%d,%A,%B,%Y"),
-            'qty': sum(self.line_ids.mapped('quantity')),
-            'period_start': self.period_f_delivery.strftime("%B,%Y"),
-            'period_end':self.period_f_delivery_end.strftime("%B,%Y")
-        }
+        else:
+            rec = {
+                'form': self.read()[0],
+                'partner': partner,
+                'type': self.type,
+                'currency_id': self.currency_id.symbol,
+                'product': product,
+                'date': self.date_start.strftime("%d,%A,%B,%Y"),
+                'qty': sum(self.line_ids.mapped('quantity')),
+                'period_start': self.period_f_delivery.strftime("%B,%Y"),
+            }
         return self.env.ref('xf_partner_contract.action_print_contract').report_action(self, data=rec)
 
     @api.onchange('contract_amount_type')

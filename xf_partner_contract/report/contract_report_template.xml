@@ -85,155 +85,6 @@
             </div>
         </template>
 
-
-        <template id="invoice_custom_report_template">
-            <t t-call="web.html_container">
-                <t t-call="xf_partner_contract.custom_layout">
-                    <div class="page" style="background-image:url('/xf_partner_contract/static/description/back.jpg');
-                        background-size:250mm 280mm; width:250mm; height:255mm; padding-top:40mm;">
-                        <div class="text-left" style="margin-left: 40px;">
-                            <h3 style="color:black;">
-                                Invoice
-                            </h3>
-                            <br/>
-                            <div>
-                                <label style="width:160px;">
-                                    Invoice Number
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="form['name']"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    Date
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="form['invoice_date']"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    Payment terms
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="term"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    invoice due date
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="form['invoice_date_due']"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    your revcybrosys:8015
-                                </label>
-                                :&amp;nbsp;
-                            </div>
-                            <br/>
-                            <div>
-                                <label style="width:160px;">
-                                    Contract number
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="contract"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    Incoterms
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="incoterm"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    Packaging
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="package"/>
-                            </div>
-                            <div>
-                                <label style="width:160px;">
-                                    Country of origin
-                                </label>
-                                :&amp;nbsp;
-                                <t t-esc="country"/>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-bordered" style=" margin-top:50px;"
-                                       id="hash_config_table">
-                                    <thead style="display: table-row-group; background-color:#6699CC;">
-                                        <tr>
-                                            <th class="text-center" style="width: 20%; color: white;" scope="col">
-                                                Product
-                                            </th>
-                                            <th class="text-center" style="width: 20%; color: white;" scope="col">
-                                                Container
-                                                Number
-                                            </th>
-                                            <th class="text-center" style="width: 20%; color: white;" scope="col">
-                                                Quantity MT
-                                            </th>
-                                            <th class="text-center" style="width: 20%; color: white;" scope="col">Price
-                                                per
-                                                MT
-                                            </th>
-                                            <th class="text-center" style="width: 20%; color: white;" scope="col">Line
-                                                Total
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <body>
-                                        <t t-foreach="line" t-as="result">
-                                            <tr>
-                                                <td style="border: 1px solid #69c;">
-                                                    <t t-esc="result['product_id']"/>
-                                                </td>
-                                                <td style="border: 1px solid #69c;">
-                                                    <t t-esc="result['Container']"/>
-                                                </td>
-                                                <td style="border: 1px solid #69c;">
-                                                    <t t-esc="result['Quantity']"/>
-                                                </td>
-                                                <td style="border: 1px solid #69c;">
-                                                    <t t-esc="result['Price']"/>
-                                                </td>
-                                                <td style="border: 1px solid #69c;">
-                                                    <t t-esc="result['Total']"/>
-                                                </td>
-                                            </tr>
-                                        </t>
-                                        <tr>
-                                            <td style="border: 1px solid #69c; background-color: white;">
-                                            </td>
-                                            <td style="border: 1px solid #69c; background-color: white;">
-                                            </td>
-                                            <td style="border: 1px solid #69c; font-weight: bold; background-color: white;">
-                                                Total MT &amp;nbsp;
-                                                <t t-esc="total_qty"/>
-                                            </td>
-                                            <td style="border: 1px solid #69c; background-color: white;">
-                                            </td>
-                                            <td style="border: 1px solid #69c; font-weight: bold; background-color: white;">
-                                                Total &amp;nbsp;
-                                                <t t-esc="total_amount"/>
-                                            </td>
-                                        </tr>
-                                    </body>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </t>
-            </t>
-        </template>
-
-
         <template id="contract_report_template">
             <t t-call="web.html_container">
                 <t t-call="xf_partner_contract.custom_contract_layout">
@@ -277,14 +128,14 @@
                             <span style="font-weight: bold;">
                                 Specification
                             </span>
-                            <t t-if="p">
+                            <t t-if="product">
                                 <div>
                                     <label>
                                         product
                                     </label>
                                     <!--                                    :&amp;nbsp;-->
                                     <t t-set="i" t-value="1"/>
-                                    <t t-foreach="p" t-as="result">
+                                    <t t-foreach="product" t-as="result">
                                         <t t-if="i==1">
                                             <span style="padding-left:137px;">
                                                 :&amp;nbsp;
@@ -432,7 +283,7 @@
                                     :&amp;nbsp;
                                     <t t-esc="period_start"/>
                                     &amp;nbsp; to &amp;nbsp;
-                                     <t t-esc="period_end"/>
+                                    <t t-esc="period_end"/>
 
                                 </div>
                             </t>
@@ -476,51 +327,82 @@
                                 In the even the agreed upon values are exceeded a discount is applicable according to
                                 below numbers and percentages.
                             </div>
-                            <div>
-                                <label style="width:193px;">
-                                    FFA
-                                </label>
-                                :&amp;nbsp;
-                                <label style="width:193px;">
-                                    Above 5%
-                                </label>
-                                1% discount per 1 % off spec
-
-                            </div>
-                            <div>
-                                <label style="width:193px;">
-                                    M&amp;I
-                                </label>
-                                :&amp;nbsp;
-                                <label style="width:193px;">
-                                    Above 2%
-                                </label>
-                                1% discount per 1 % off spec
-
-                            </div>
-                            <div>
-                                <label style="width:193px;">
-                                    Iodine Value
-                                </label>
-                                :&amp;nbsp;
-                                <label style="width:193px;">
-                                    Below 60
-                                </label>
-                                1 USD discount per point off spec
-
-                            </div>
-                            <div>
-                                <label style="width:193px;">
-                                    Sulphur
-                                </label>
-                                :&amp;nbsp;
-                                <label style="width:193px;">
-                                    Above 50
-                                </label>
-                                1 USD discount per point off spec
-
-                            </div>
-
+                            <t t-if="form['ffa']">
+                                <div>
+                                    <label style="width:193px;">
+                                        FFA
+                                    </label>
+                                    :&amp;nbsp;
+                                    <label style="width:193px;">
+                                        <t t-if="form['ffa_min_max']=='min'">
+                                            Below&amp;nbsp;
+                                            <t t-esc="form['ffa']"/>
+                                        </t>
+                                        <t t-else="">
+                                            Above&amp;nbsp;
+                                            <t t-esc="form['ffa']"/>
+                                        </t>
+                                    </label>
+                                    1% discount per 1 % off spec
+                                </div>
+                            </t>
+                            <t t-if="form['m_and_i']">
+                                <div>
+                                    <label style="width:193px;">
+                                        M&amp;I
+                                    </label>
+                                    :&amp;nbsp;
+                                    <label style="width:193px;">
+                                        <t t-if="form['m_and_i_min_max']=='min'">
+                                            Below&amp;nbsp;
+                                            <t t-esc="form['m_and_i']"/>
+                                        </t>
+                                        <t t-else="">
+                                            Above&amp;nbsp;
+                                            <t t-esc="form['m_and_i']"/>
+                                        </t>
+                                    </label>
+                                    1% discount per 1 % off spec
+                                </div>
+                            </t>
+                            <t t-if="form['iv']">
+                                <div>
+                                    <label style="width:193px;">
+                                        Iodine Value
+                                    </label>
+                                    :&amp;nbsp;
+                                    <label style="width:193px;">
+                                        <t t-if="form['iv_min_max']=='min'">
+                                            Below&amp;nbsp;
+                                            <t t-esc="form['iv']"/>
+                                        </t>
+                                        <t t-else="">
+                                            Above&amp;nbsp;
+                                            <t t-esc="form['iv']"/>
+                                        </t>
+                                    </label>
+                                    1 USD discount per point off spec
+                                </div>
+                            </t>
+                            <t t-if="form['sulphur']">
+                                <div>
+                                    <label style="width:193px;">
+                                        Sulphur
+                                    </label>
+                                    :&amp;nbsp;
+                                    <label style="width:193px;">
+                                        <t t-if="form['sulphur_iv_min_max']=='min'">
+                                            Below&amp;nbsp;
+                                            <t t-esc="form['sulphur']"/>
+                                        </t>
+                                        <t t-else="">
+                                            Above&amp;nbsp;
+                                            <t t-esc="form['sulphur']"/>
+                                        </t>
+                                    </label>
+                                    1 USD discount per point off spec
+                                </div>
+                            </t>
                         </div>
                         <div class="row" style="page-break-before:always;
                                         background-image:url('/xf_partner_contract/static/description/back.jpg');
