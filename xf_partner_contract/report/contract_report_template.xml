@@ -136,11 +136,11 @@
                     <div style="padding-left:205px;">
                         <t t-esc="result['description']"/>
                     </div>
-                    <div style="padding-left:205px;">
-                            HS code:
-                            &amp;nbsp;
-                            <t t-esc="result['hs_code']"/>
-                    </div>
+<!--                    <div style="padding-left:205px;">-->
+<!--                            HS code:-->
+<!--                            &amp;nbsp;-->
+<!--                            <t t-esc="result['hs_code']"/>-->
+<!--                    </div>-->
                 </div>
                 <t t-if="form['ffa']">
                     <div>
