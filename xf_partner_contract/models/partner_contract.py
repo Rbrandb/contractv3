@@ -315,21 +315,12 @@ class PartnerContract(models.Model):
         product = []
         currency = self.env.company.currency_id.symbol
         for line in self.line_ids:
-            if line.product_id.description:
-                descr = tools.html2plaintext(line.product_id.description)
-                pro = {
-                    'product_name' : line.product_id.name,
-                    'description' : descr,
-                    'quantity': line.quantity,
-                    'price': line.price_unit,
-                }
-            else:
-                pro = {
-                    'product_name': line.product_id.name,
-                    'quantity': line.quantity,
-                    'price': line.price_unit,
-                }
-
+            pro = {
+                'product_name' : line.product_id.name,
+                'description' : line.name,
+                'quantity': line.quantity,
+                'price': line.price_unit,
+            }
             product.append(pro)
         if self.period_f_delivery_end:
             rec = {
