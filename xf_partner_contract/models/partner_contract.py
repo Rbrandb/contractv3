@@ -321,8 +321,6 @@ class PartnerContract(models.Model):
                 'description' : descr,
                 'quantity': line.quantity,
                 'price': line.price_unit,
-                'hs_code': line.product_id.l10n_in_hsn_code,
-
             }
             product.append(pro)
         if self.period_f_delivery_end:
