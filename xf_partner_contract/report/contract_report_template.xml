@@ -49,7 +49,7 @@
                             <br/>
                             DUTCH CARIBBEAN
                         </div>
-                        <div class="col-3" style="position: absolute; left: 604px; top: 8px;">
+                        <div class="col-3" style="position: absolute; left: 604px; top: 3px;">
                             <em style="font-style: normal; text-align:center; font-weight: 701; color: #69C;">CAMBER OF
                                 COMMERCE:
                             </em>
@@ -67,7 +67,7 @@
                             <br/>
                             INFO@GLOBALUCOCOMPANY.COM
                         </div>
-                        <div class="col-3" style="position: absolute; right: 0px; top: 8px;">
+                        <div class="col-3" style="position: absolute; right: 0px; top: 6px;">
                             <img src="/xf_partner_contract/static/description/niwo.png" width="100px" height="auto"
                                  style="padding-right: 12px;"/>
                             <img src="/xf_partner_contract/static/description/ISCC.png" width="100px" height="auto"
@@ -133,14 +133,17 @@
                         :&amp;nbsp;
                         <t t-esc="result['product_name']"/>
                     </span>
-                    <div style="padding-left:205px;">
-                        <t t-esc="result['description']"/>
-                    </div>
-<!--                    <div style="padding-left:205px;">-->
-<!--                            HS code:-->
-<!--                            &amp;nbsp;-->
-<!--                            <t t-esc="result['hs_code']"/>-->
-<!--                    </div>-->
+                    <t t-if="result['description']">
+                        <div style="padding-left:205px;">
+                            <t t-esc="result['description']"/>
+                        </div>
+                    </t>
+
+                    <!--                    <div style="padding-left:205px;">-->
+                    <!--                            HS code:-->
+                    <!--                            &amp;nbsp;-->
+                    <!--                            <t t-esc="result['hs_code']"/>-->
+                    <!--                    </div>-->
                 </div>
                 <t t-if="form['ffa']">
                     <div>
