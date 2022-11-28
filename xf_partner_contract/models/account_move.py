@@ -82,17 +82,17 @@ class AccountMove(models.Model):
                 'product_id': line.product_id.name,
                 'Container': line.container_no,
                 'Quantity': line.quantity,
-                'Price': line.price_unit,
-                'Total': line.price_subtotal
+                'Price': "{:.2f}".format(line.price_unit),
+                'Total': "{:.2f}".format(line.price_subtotal)
             }
             product.append(lines)
         total = {
-            'total_amount': self.amount_total_signed,
+            'total_amount': "{:.2f}".format(self.amount_total_signed),
             'total_qty': sum(self.invoice_line_ids.mapped('quantity'))
         }
         rec = {
             'line': product,
-            'total_amount': self.amount_total_signed,
+            'total_amount': "{:.2f}".format(self.amount_total_signed),
             'total_qty': sum(self.invoice_line_ids.mapped('quantity')),
             'form': self.read()[0],
             'term': self.invoice_payment_term_id.name,
