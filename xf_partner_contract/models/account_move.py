@@ -78,7 +78,6 @@ class AccountMove(models.Model):
     def print_custom_invoice(self):
         product = []
         for line in self.invoice_line_ids:
-            print('line.container_no', line.container_no)
             lines = {
                 'product_id': line.product_id.name,
                 'Container': line.container_no,
@@ -100,7 +99,8 @@ class AccountMove(models.Model):
             'contract': self.contract_id.name,
             'incoterm': self.invoice_incoterm_id.name,
             'package':self.package_id.name,
-            'country': self.country_origin_id.name
+            'country': self.country_origin_id.name,
+            'currency_symbol': self.currency_id.symbol
 
         }
         return self.env.ref('xf_partner_contract.print_custom_invoice').report_action(self, rec, total)

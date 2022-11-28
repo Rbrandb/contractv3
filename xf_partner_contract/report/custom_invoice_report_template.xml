@@ -220,9 +220,11 @@
                                                     <t t-esc="result['Quantity']"/>
                                                 </td>
                                                 <td style="border: 1px solid #69c;">
+                                                    <t t-esc="currency_symbol"/>
                                                     <t t-esc="result['Price']"/>
                                                 </td>
                                                 <td style="border: 1px solid #69c;">
+                                                    <t t-esc="currency_symbol"/>
                                                     <t t-esc="result['Total']"/>
                                                 </td>
                                             </tr>
@@ -240,6 +242,7 @@
                                             </td>
                                             <td style="border: 1px solid #69c; font-weight: bold; background-color: white;">
                                                 Total &amp;nbsp;
+                                                <t t-esc="currency_symbol"/>
                                                 <t t-esc="total_amount"/>
                                             </td>
                                         </tr>
