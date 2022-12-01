@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Chart template -->
+        <record id="l10ncarcaosaldibalans_chart_template" model="account.chart.template">
+            <field name="name">Carcao Saldinbalans Chart of Account</field>
+            <field name="bank_account_code_prefix">550</field>
+            <field name="cash_account_code_prefix">570</field>
+            <field name="transfer_account_code_prefix">580</field>
+            <field name="currency_id" ref="base.ANG"/>
+            <field name="spoken_languages" eval="'nl_BE;nl_NL;fr_FR;fr_BE;de_DE'"/>
+            <field name="country_id" ref="base.cw"/>
+        </record>
+
+</odoo>

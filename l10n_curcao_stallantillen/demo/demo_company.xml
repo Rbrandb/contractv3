@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_demo_company_staal_antillen_cw" model="res.partner">
+        <field name="name">Carcao Staal Antillen Company CoA</field>
+        <field name="vat">BE246697724</field>
+        <field name="street">1021 Test</field>
+        <field name="city">Willemstad</field>
+        <field name="country_id" ref="base.cw"/>
+
+        <field name="zip">2660</field>
+        <field name="phone">+32 470 12 34 56</field>
+        <field name="email">info@company.cwexample.com</field>
+        <field name="website">www.cwexample.com</field>
+    </record>
+
+    <record id="demo_company_staal_antillen_cw" model="res.company">
+        <field name="name">CW Staal Antillen Company CoA</field>
+        <field name="partner_id" ref="partner_demo_company_staal_antillen_cw"/>
+    </record>
+
+    <function model="res.company" name="_onchange_country_id">
+        <value eval="[ref('demo_company_staal_antillen_cw')]"/>
+    </function>
+
+    <function model="res.users" name="write">
+        <value eval="[ref('base.user_root'), ref('base.user_admin'), ref('base.user_demo')]"/>
+        <value eval="{'company_ids': [(4, ref('l10n_curcao_stallantillen.demo_company_staal_antillen_cw'))]}"/>
+    </function>
+
+    <function model="account.chart.template" name="try_loading">
+        <value eval="[ref('l10n_curcao_stallantillen.l10ncarcaosaldibalans_chart_template')]"/>
+        <value model="res.company" eval="obj().env.ref('l10n_curcao_stallantillen.demo_company_staal_antillen_cw')"/>
+    </function>
+</odoo>
