@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="escompte_template" model="account.reconcile.model.template">
+        <field name="chart_template_id" ref="l10ncarcaosaldibalans_chart_template"/>
+        <field name="name">Discount</field>
+    </record>
+    <record id="escompte_line_template" model="account.reconcile.model.line.template">
+        <field name="model_id" ref="l10n_curcao_stallantillen.escompte_template"/>
+        <field name="account_id" ref="account_activa_account_8036"/>
+        <field name="amount_type">percentage</field>
+        <field name="amount_string">100</field>
+        <field name="label">Discount allowed</field>
+    </record>
+    <record id="frais_bancaires_htva_template" model="account.reconcile.model.template">
+        <field name="chart_template_id" ref="l10ncarcaosaldibalans_chart_template"/>
+        <field name="name">Bank charges excluding VAT</field>
+    </record>
+    <record id="frais_bancaires_htva_line_template" model="account.reconcile.model.line.template">
+        <field name="model_id" ref="l10n_curcao_stallantillen.frais_bancaires_htva_template"/>
+        <field name="account_id" ref="account_activa_account_8037" />
+        <field name="amount_type">percentage</field>
+        <field name="amount_string">100</field>
+        <field name="label">Bank charges excluding VAT </field>
+    </record>
+    <record id="frais_bancaires_tva21_template" model="account.reconcile.model.template">
+        <field name="chart_template_id" ref="l10ncarcaosaldibalans_chart_template"/>
+        <field name="name">Bank charges VAT21</field>
+    </record>
+    <record id="frais_bancaires_tva21_line_template" model="account.reconcile.model.line.template">
+        <field name="model_id" ref="l10n_curcao_stallantillen.frais_bancaires_tva21_template"/>
+        <field name="account_id" ref="account_activa_account_8037"/>
+        <field name="amount_type">percentage</field>
+        <field name="tax_ids" eval="[(6, 0, [ref('l10n_curcao_stallantillen.attn_TVA-21-inclus-dans-prix')])]"/>
+        <field name="amount_string">100</field>
+        <field name="label">Bank charges VAT21</field>
+    </record>
+    <record id="virements_internes_template" model="account.reconcile.model.template">
+        <field name="chart_template_id" ref="l10ncarcaosaldibalans_chart_template"/>
+        <field name="name">Internal transfers </field>
+        <field name="to_check" eval="False"/>
+    </record>
+    <record id="virements_internes_line_template" model="account.reconcile.model.line.template">
+        <field name="model_id" ref="l10n_curcao_stallantillen.virements_internes_template"/>
+        <field name="account_id" search="[('code', '=like', obj().env.ref('l10n_curcao_stallantillen.l10ncarcaosaldibalans_chart_template').transfer_account_code_prefix + '%'), ('chart_template_id', '=', obj().env.ref('l10n_curcao_stallantillen.l10ncarcaosaldibalans_chart_template').id)]"/>
+        <field name="amount_type">percentage</field>
+        <field name="amount_string">100</field>
+        <field name="label">Internal transfers </field>
+    </record>
+    <record id="compte_attente_template" model="account.reconcile.model.template">
+        <field name="chart_template_id" ref="l10ncarcaosaldibalans_chart_template"/>
+        <field name="name">Waiting Account </field>
+        <field name="to_check" eval="True"/>
+    </record>
+    <record id="compte_attente_line_template" model="account.reconcile.model.line.template">
+        <field name="model_id" ref="l10n_curcao_stallantillen.compte_attente_template"/>
+        <field name="account_id" ref="account_activa_account_8038"/>
+        <field name="amount_type">percentage</field>
+        <field name="amount_string">100</field>
+        <field name="label"></field>
+    </record>
+</odoo>

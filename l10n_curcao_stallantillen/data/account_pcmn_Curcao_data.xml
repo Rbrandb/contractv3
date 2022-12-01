@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="l10ncarcaosaldibalans_chart_template" model="account.chart.template">
+            <field name="name">Carcao Stall antilen Chart of Account</field>
+            <field name="code_digits">6</field>
+            <field name="property_account_receivable_id" ref="account_activa_account_1100"/>
+            <field name="property_account_payable_id" ref="account_activa_account_1181"/>
+            <field name="property_account_expense_categ_id" ref="account_activa_account_4210"/>
+            <field name="property_account_income_categ_id" ref="account_activa_account_8909"/>
+            <field name="expense_currency_exchange_account_id" ref="account_activa_account_4600"/>
+            <field name="income_currency_exchange_account_id" ref="account_activa_account_8909"/>
+            <field name="property_tax_payable_account_id" ref="account_activa_account_1160"/>
+            <field name="property_tax_receivable_account_id" ref="account_activa_account_3001"/>
+            <field name="default_pos_receivable_account_id" ref="account_activa_account_1100" />
+            <field name="account_journal_suspense_account_id" ref="account_activa_account_1810"/>
+        </record>
+</odoo>
