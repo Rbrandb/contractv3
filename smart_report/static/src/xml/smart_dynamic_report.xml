@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+     <t t-name="smart_dynamic">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+            <div class="form-group col-1" id="company_button">
+                <label for="cars" style="font-weight: bold; font-size: initial;">Company: &amp;nbsp;</label>
+                <select id="company_selection" class="btn btn-primary" style="position: absolute;">
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary" id="pdf" style="position: absolute; top: 36px; left: 70mm;">
+                    Print (PDF)
+            </button>
+        </div>
+         <div class="table_smart">
+         <t t-set="i" t-value="0"/>
+        <t t-foreach="widget.properties" t-as="result">
+              <table class="smart-table" style="margin-top:50px; width:100%; margin-left:20px;"
+                     id="hash_config_table">
+                    <thead style="display: table-row-group; background-color:#8DB2D7; border: 0.3rem solid #8DB2D7;
+                        border-bottom: none;">
+                        <tr>
+                            <th class="" style="width: 30%; color: white;" scope="col">
+                                <t t-esc="result"/>
+                            </th>
+                            <th class="" style="width: 20%; color: white;" scope="col">
+                                Amount
+                            </th>
+                            <th class="" style="width: 30%; color: white;" scope="col">
+                            </th>
+                            <th class="" style="width: 20%; color: white;" scope="col">
+                                Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <body>
+                         <tr>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Open invoices
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.open_invoice[i]"/>
+                             </td>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Costs current year
+
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.cost_current_yr[i]"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Turnover in current year
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.curr_turn_over[i]"/>
+                             </td>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Costs last year
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.cost_last_yr[i]"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Turnover in last year
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.last_yr_turnover[i]"/>
+                             </td>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Margin current year
+
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.current_yr_margin[i]"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Costs invoices open
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.open_bills[i]"/>
+                             </td>
+                             <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                 Margin last year
+
+                             </td>
+                             <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                 <t t-esc="widget.last_yr_margin[i]"/>
+                             </td>
+                         </tr>
+                          <tr>
+                             <td>
+                             </td>
+                              <td>
+                              </td>
+                              <td>
+                              </td>
+                              <td>
+                                Total : &amp;nbsp;
+                                  <t t-esc="widget.total_amount[i]"/>
+                                <hr style="border-top: 2px solid #00000024; margin-top: .2rem; margin-bottom: 0rem;"/>
+                             </td>
+                          </tr>
+                    </body>
+                    <t t-set="i" t-value="i + 1"/>
+              </table>
+     </t>
+         </div>
+    </t>
+
+
+</templates>
