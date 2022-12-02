@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo.http import request
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class AccountingSmartReport(models.Model):
@@ -29,6 +30,8 @@ class AccountingSmartReport(models.Model):
             default_company = self.env.company.id
         current_yr = fields.datetime.now().year
         values = self.env['ir.config_parameter'].sudo().get_param('smart_report.property_ids')
+        if not values:
+            raise ValidationError(_('Please add your properties in settings'))
         product = self.env['product.product'].search([
             ('id', 'in', eval(values))
         ])
