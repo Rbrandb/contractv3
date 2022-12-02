@@ -118,21 +118,13 @@ class AccountingSmartReport(models.Model):
             ('id', 'in', eval(values))
         ])
         comp = []
-        sale = self.env['sale.order.line'].search([
-            ('state', 'in', ['sale', 'done'])
-        ])
-        current_year_turnover = []
         for pro in product:
             comp.append(
                 pro.name
             )
-            p = sale.filtered(lambda l: l.product_id == pro and l.create_date.year == current_yr)
-            current_year_turnover.append(
-                sum(p.mapped('price_subtotal'))
-            )
         filters = comp
         report = []
-        lines = current_year_turnover
+        lines = []
         main_line = []
         report_vals = self.get_properties(int(current))
         company = self.env['res.company'].search([(

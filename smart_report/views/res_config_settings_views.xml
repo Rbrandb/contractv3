@@ -29,22 +29,4 @@
             </xpath>
         </field>
     </record>
-
-    <record id="action_xf_partner_contract_configuration" model="ir.actions.act_window">
-        <field name="name">Settings</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">res.config.settings</field>
-        <field name="view_mode">form</field>
-        <field name="target">inline</field>
-        <field name="context">{'module' : 'xf_partner_contract', 'bin_size': False}</field>
-    </record>
-
-    <menuitem
-            id="menu_xf_partner_contract_general_settings"
-            name="Settings"
-            parent="xf_partner_contract.xf_partner_contract_config_menuitem"
-            sequence="0"
-            action="action_xf_partner_contract_configuration"
-            groups="base.group_system"/>
-
 </odoo>
