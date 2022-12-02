@@ -1,0 +1,150 @@
+<odoo>
+    <template id="smart_report">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div>
+                    Company: &amp;nbsp;
+                    <t t-esc="company_name"/>
+                </div>
+                <div>
+                    Date: &amp;nbsp;
+                    <t t-esc="date"/>
+                </div>
+                <t t-set="i" t-value="0"/>
+                <t t-foreach="Filters" t-as="result">
+                    <table class="form-group col-11" style="margin-top:50px; width:90%; margin-left:20px;"
+                           id="hash_config_table">
+                        <thead style="display: table-row-group; background-color:#8DB2D7; border: 0.3rem solid #8DB2D7;
+                                    border-bottom: none;">
+                            <tr>
+                                <th class="" style="width: 30%; color: white;" scope="col">
+                                    <t t-esc="result"/>
+                                </th>
+                                <th class="" style="width: 20%; color: white;" scope="col">
+                                    Amount
+                                </th>
+                                <th class="" style="width: 30%; color: white;" scope="col">
+                                </th>
+                                <th class="" style="width: 20%; color: white;" scope="col">
+                                    Amount
+                                </th>
+                            </tr>
+                        </thead>
+                        <body>
+                            <tr>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Open invoices
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="open_invoice[i]"/>
+                                </td>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Costs current year
+
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="current_cost[i]"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Turnover in current year
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="crnt_turnover[i]"/>
+                                </td>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Costs last year
+
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="last_cost[i]"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Turnover in last year
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="last_turnover[i]"/>
+                                </td>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Margin current year
+
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="current_margin[i]"/>
+                                </td>
+                            </tr>
+                        </body>
+                        <body>
+                            <tr>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Costs invoices open
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="open_bills[i]"/>
+                                </td>
+                                <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
+                                    Margin last year
+
+                                </td>
+                                <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="last_margin[i]"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    Total : &amp;nbsp;
+                                     <t t-esc="total[i]"/>
+                                    <hr style="border-top: 2px solid #00000024; margin-top: .2rem; margin-bottom: 0rem;"/>
+                                </td>
+                            </tr>
+                        </body>
+                        <t t-set="i" t-value="i + 1"/>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="paperformat_smart_report" model="report.paperformat">
+        <field name="name">Smart Print</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">23</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <!--            <field name="header_line" eval="False" />-->
+        <field name="header_spacing">60</field>
+        <field name="dpi">90</field>
+    </record>
+
+
+    <record id="action_smart_pdf" model="ir.actions.report">
+        <field name="name">Smart Report</field>
+        <field name="model">accounting.smart.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">smart_report.smart_report</field>
+        <field name="report_file">smart_report.smart_report</field>
+        <field name="binding_model_id" ref="model_accounting_smart_report"/>
+                <field name="paperformat_id" ref="smart_report.paperformat_smart_report"/>
+    </record>
+
+</odoo>
