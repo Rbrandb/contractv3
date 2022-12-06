@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="xf_partner_contract_specification" model="ir.actions.act_window">
+            <field name="name">Specifications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.specification</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create.....!
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="xf_partner_contract_specification_menuitem"
+                name="Specification"
+                action="xf_partner_contract_specification"
+                parent="xf_partner_contract_config_menuitem"
+                groups="xf_partner_contract.group_xf_partner_contract_team_leader"
+                sequence="2"
+        />
+    </data>
+</odoo>
