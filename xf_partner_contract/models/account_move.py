@@ -25,13 +25,6 @@ class AccountMove(models.Model):
     country_origin_id = fields.Many2one('res.country', string='Country of origin')
     your_rev = fields.Char('Your Reference')
 
-
-    # Compute and search fields, in the same order of fields declaration
-    # Constraints and onchanges
-    # Built-in methods overrides
-    # Action methods
-
-    @api.model
     def action_post(self):
         """supering invoice confirming function for amount/uom deduction from contract"""
         if self.invoice_line_ids and self.contract_id:
