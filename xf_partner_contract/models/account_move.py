@@ -23,6 +23,7 @@ class AccountMove(models.Model):
     # incoterm_id =
     package_id = fields.Many2one('stock.quant.package', 'Packaging',)
     country_origin_id = fields.Many2one('res.country', string='Country of origin')
+    your_rev = fields.Char('Your Reference')
 
 
     # Compute and search fields, in the same order of fields declaration
@@ -77,36 +78,11 @@ class AccountMove(models.Model):
 
     def print_custom_invoice(self):
         product = []
-        for line in self.invoice_line_ids:
-            lines = {
-                'product_id': line.product_id.name,
-                'Container': line.container_no,
-                'Quantity': line.quantity,
-                'Price': "{:.2f}".format(line.price_unit),
-                'Total': "{:.2f}".format(line.price_subtotal)
-            }
-            product.append(lines)
-        total = {
-            'total_amount': "{:.2f}".format(self.amount_total_signed),
-            'total_qty': sum(self.invoice_line_ids.mapped('quantity'))
-        }
-        rec = {
-            'line': product,
-            'total_amount': "{:.2f}".format(self.amount_total_signed),
-            'total_qty': sum(self.invoice_line_ids.mapped('quantity')),
-            'form': self.read()[0],
-            'term': self.invoice_payment_term_id.name,
-            'contract': self.contract_id.name,
-            'incoterm': self.invoice_incoterm_id.name,
-            'package':self.package_id.name,
-            'country': self.country_origin_id.name,
-            'currency_symbol': self.currency_id.symbol
-
-        }
-        return self.env.ref('xf_partner_contract.print_custom_invoice').report_action(self, rec, total)
+        return self.env.ref('xf_partner_contract.print_custom_invoice').report_action(self)
 
 
 class AccountMoveLineInherit(models.Model):
     _inherit = 'account.move.line'
 
-    container_no = fields.Char(string='Container Number')
+    container_no = fields.Char(string='Container Number', tracking=True)
+

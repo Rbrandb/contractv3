@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_legislation" model="ir.actions.act_window">
+            <field name="name">Legislation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.legislation</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create.....!
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="xf_partner_contract_legislation_menuitem"
+                name="Legislation"
+                action="action_legislation"
+                parent="xf_partner_contract_config_menuitem"
+                groups="xf_partner_contract.group_xf_partner_contract_team_leader"
+                sequence="5"
+        />
+    </data>
+</odoo>

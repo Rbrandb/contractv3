@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_delivery_term" model="ir.actions.act_window">
+            <field name="name">Delivery Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.terms</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create.....!
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="xf_partner_contract_delivery_term_menuitem"
+                name="Delivery Term"
+                action="action_delivery_term"
+                parent="xf_partner_contract_config_menuitem"
+                groups="xf_partner_contract.group_xf_partner_contract_team_leader"
+                sequence="3"
+        />
+    </data>
+</odoo>

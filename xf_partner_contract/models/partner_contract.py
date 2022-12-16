@@ -260,12 +260,10 @@ class PartnerContract(models.Model):
     period_f_delivery_end = fields.Date(related='date_end', translate=True)
     packaging = fields.Char(string="Packaging", translate=True)
     expected_containers = fields.Char(string="Expected amount of containers", translate=True)
-    trading_rule = fields.Char(string="Applied trading rule", translate=True)
-    legislation = fields.Char(string="Legislation", translate=True)
-    # min_max = fields.Selection([
-    #     ('min', 'Min'),
-    #     ('max', 'Max'),
-    # ], string=False)
+    trading_rule_id = fields.Many2one('contract.trading.rule', 'Applied trading rule')
+    legislation_id = fields.Many2one('contract.legislation', 'Legislation')
+    delivery_term_id = fields.Many2one('delivery.terms', 'Delivery Terms')
+
 
 
     @api.model

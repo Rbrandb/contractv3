@@ -163,6 +163,9 @@
                                        'required':[('contract_approval', '=', 'required')],
                                        'readonly':[('can_edit', '!=', True)],
                                        }"/>
+                                <field name="payment_term_id"
+                                           attrs="{'readonly':[('can_edit', '!=', True)]}"/>
+
                             </group>
                         </group>
                         <group>
@@ -176,6 +179,7 @@
                                 <field name="date_last_payment"
                                        attrs="{'readonly':[('can_edit', '!=', True)]}"/>
                                 <field name="expiring_state"/>
+
                             </group>
                         </group>
                         <group>
@@ -200,6 +204,9 @@
                                 <field name="end_units"
                                        attrs="{'required': [('contract_amount_type', '=', 'unit')],
                                        'invisible': [('contract_amount_type', '!=', 'unit')]}"/>
+                            </group>
+                            <group>
+                                <field name="delivery_term_id"/>
                             </group>
                         </group>
                         <group>
@@ -251,8 +258,8 @@
 
                                 <field name="packaging"/>
                                 <field name="expected_containers"/>
-                                <field name="trading_rule"/>
-                                <field name="legislation"/>
+                                <field name="trading_rule_id"/>
+                                <field name="legislation_id"/>
                             </group>
                         </group>
 
@@ -289,8 +296,7 @@
                             </page>
                             <page name="notes" string="Terms and Conditions">
                                 <group>
-                                    <field name="payment_term_id"
-                                           attrs="{'readonly':[('can_edit', '!=', True)]}"/>
+
                                     <field name="notes"
                                            attrs="{'readonly':[('can_edit', '!=', True)]}"/>
                                 </group>

@@ -285,22 +285,22 @@
                         <t t-esc="form['payment_term_id'][1]"/>
                     </div>
                 </t>
-                <t t-if="form['trading_rule']">
+                <t t-if="form['trading_rule_id']">
                     <div>
                         <label style="width:193px;">
                             Applied trading rules
                         </label>
                         :&amp;nbsp;
-                        <t t-esc="form['trading_rule']"/>
+                        <t t-esc="form['trading_rule_id'][1]"/>
                     </div>
                 </t>
-                <t t-if="form['legislation']">
+                <t t-if="form['legislation_id']">
                     <div>
                         <label style="width:193px;">
                             Legislation
                         </label>
                         :&amp;nbsp;
-                        <t t-esc="form['legislation']"/>
+                        <t t-esc="form['legislation_id'][1]"/>
                     </div>
                 </t>
                 <div style="padding-top:10px;">
@@ -561,22 +561,22 @@
                         <t t-esc="form['payment_term_id'][1]"/>
                     </div>
                 </t>
-                <t t-if="form['trading_rule']">
+                <t t-if="form['trading_rule_id']">
                     <div>
                         <label style="width:193px;">
                             Applied trading rules
                         </label>
                         :&amp;nbsp;
-                        <t t-esc="form['trading_rule']"/>
+                        <t t-esc="form['trading_rule_id'][1]"/>
                     </div>
                 </t>
-                <t t-if="form['legislation']">
+                <t t-if="form['legislation_id']">
                     <div>
                         <label style="width:193px;">
                             Legislation
                         </label>
                         :&amp;nbsp;
-                        <t t-esc="form['legislation']"/>
+                        <t t-esc="form['legislation_id'][1]"/>
                     </div>
                 </t>
                 <div style="padding-top:30px;">

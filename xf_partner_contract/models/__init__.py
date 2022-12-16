@@ -4,3 +4,6 @@ from . import partner_contract_team
 from . import res_config_settings
 from . import contract_specification
 from . import document_document
+from . import delivery_terms
+from . import contract_trading_rule
+from . import contract_legislation
