@@ -105,7 +105,9 @@ class AccountingSmartReport(models.Model):
             )
             if total == []:
                 total.append(0)
-        return comp, current_year_turnover, last_year_turnover, open_invoice_list, open_bill_list, cost_current_yr_list, cost_last_yr_list, current_yr_margin, last_yr_margin, total
+        company_total = sum(total)
+        currency_symbol = self.env.company.currency_id.symbol
+        return comp, current_year_turnover, last_year_turnover, open_invoice_list, open_bill_list, cost_current_yr_list, cost_last_yr_list, current_yr_margin, last_yr_margin, total, currency_symbol, company_total
 
     @api.model
     def smart_pdf_report(self, option, current):
@@ -114,7 +116,6 @@ class AccountingSmartReport(models.Model):
             # 'report_type': report_values.report_type,
             'model': self,
         }
-
         current_yr = fields.datetime.now().year
         values = self.env['ir.config_parameter'].sudo().get_param('smart_report.property_ids')
         product = self.env['product.product'].search([
@@ -133,7 +134,6 @@ class AccountingSmartReport(models.Model):
         company = self.env['res.company'].search([(
             'id', '=', int(current)
         )])
-        print('company', company)
         return {
             'name': "Smart Report",
             'type': 'ir.actions.client',

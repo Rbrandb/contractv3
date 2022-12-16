@@ -45,6 +45,8 @@ class SmartReport(models.AbstractModel):
                              'current_margin': data.get('report_data')['report_vals'][7],
                              'last_margin': data.get('report_data')['report_vals'][8],
                              'total': data.get('report_data')['report_vals'][9],
-                            'date': fields.Datetime.now()
+                            'date': fields.Datetime.now(),
+                             'currency_symbol': self.env.company.currency_id.symbol,
+                             'company_total': sum(data.get('report_data')['report_vals'][9])
                              })
             return data

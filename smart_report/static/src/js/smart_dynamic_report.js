@@ -46,6 +46,8 @@ odoo.define("smart_report.smart_dynamic_report", function (require) {
                 self.current_yr_margin = result[7];
                 self.last_yr_margin = result[8];
                 self.total_amount = result[9];
+                self.currency_symbol = result[10];
+                self.company_total = result[11];
             });
         return $.when(def0);
         });

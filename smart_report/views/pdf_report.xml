@@ -14,8 +14,8 @@
                 <t t-foreach="Filters" t-as="result">
                     <table class="form-group col-11" style="margin-top:50px; width:90%; margin-left:20px;"
                            id="hash_config_table">
-                        <thead style="display: table-row-group; background-color:#8DB2D7; border: 0.3rem solid #8DB2D7;
-                                    border-bottom: none;">
+                        <thead style="display: table-row-group; background-color:#714B67;; border: 0.3rem solid #714B67;;
+                            border-bottom: none;">
                             <tr>
                                 <th class="" style="width: 30%; color: white;" scope="col">
                                     <t t-esc="result"/>
@@ -36,6 +36,7 @@
                                     Open invoices
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="open_invoice[i]"/>
                                 </td>
                                 <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
@@ -43,6 +44,7 @@
 
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="current_cost[i]"/>
                                 </td>
                             </tr>
@@ -53,6 +55,7 @@
                                     Turnover in current year
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="crnt_turnover[i]"/>
                                 </td>
                                 <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
@@ -60,6 +63,7 @@
 
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="last_cost[i]"/>
                                 </td>
                             </tr>
@@ -68,6 +72,7 @@
                                     Turnover in last year
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="last_turnover[i]"/>
                                 </td>
                                 <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
@@ -75,6 +80,7 @@
 
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="current_margin[i]"/>
                                 </td>
                             </tr>
@@ -85,6 +91,7 @@
                                     Costs invoices open
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="open_bills[i]"/>
                                 </td>
                                 <td style="border: 0.3rem solid black; border-right: none; border-top: none;">
@@ -92,6 +99,7 @@
 
                                 </td>
                                 <td style="border: 0.3rem solid black; border-left: none; border-top: none;">
+                                    <t t-esc="currency_symbol"/>
                                     <t t-esc="last_margin[i]"/>
                                 </td>
                             </tr>
@@ -107,7 +115,8 @@
                                 </td>
                                 <td>
                                     Total : &amp;nbsp;
-                                     <t t-esc="total[i]"/>
+                                    <t t-esc="currency_symbol"/>
+                                    <t t-esc="total[i]"/>
                                     <hr style="border-top: 2px solid #00000024; margin-top: .2rem; margin-bottom: 0rem;"/>
                                 </td>
                             </tr>
@@ -115,6 +124,17 @@
                         <t t-set="i" t-value="i + 1"/>
                     </table>
                 </t>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4"
+                         style="font-size: large; font-weight: bold; padding-top: 20mm; padding-left: 25mm;">
+                        Company Total:
+                        <t t-esc="currency_symbol"/>
+                        <t t-esc="company_total"/>
+                    </div>
+                </div>
+
             </t>
         </t>
     </template>
@@ -144,7 +164,7 @@
         <field name="report_name">smart_report.smart_report</field>
         <field name="report_file">smart_report.smart_report</field>
         <field name="binding_model_id" ref="model_accounting_smart_report"/>
-                <field name="paperformat_id" ref="smart_report.paperformat_smart_report"/>
+        <field name="paperformat_id" ref="smart_report.paperformat_smart_report"/>
     </record>
 
 </odoo>
