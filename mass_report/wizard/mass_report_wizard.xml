@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_mass_report_wizard" model="ir.ui.view">
+        <field name="name">Mass Report Form View Wizard</field>
+        <field name="model">mass_report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Report">
+                <group>
+                    <field name="type"/>
+                </group>
+                <footer>
+                    <button string="Generate" type="object" name="action_generate" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" data-hotkey="z" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mass_report_wizard_act_window" model="ir.actions.act_window">
+        <field name="name">Mass Report</field>
+        <field name="res_model">mass_report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="view_mass_report_wizard_act_window" id="menu_action_view_l10n_us_1099_wizard" name="Mass Report"
+              sequence="20" parent="account_reports.account_reports_partners_reports_menu"/>
+</odoo>
